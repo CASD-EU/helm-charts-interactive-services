@@ -275,3 +275,14 @@ message:
   en: ""
 
 runtimeClassName: ""
+
+httproute:
+  enabled: false
+  annotations: []
+  hostname: chart-example.local
+  userHostname: chart-example-user.local
+  path: /
+  userPath: /
+  parentRefs: []
+    # - name: my-gateway
+    #   namespace: gateway-system
