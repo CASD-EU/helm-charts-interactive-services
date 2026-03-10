@@ -40,7 +40,7 @@ jobs:
           python3 utils/generate-children-charts.py
           if [[ `git status --porcelain` ]]; then
             git add -A
-            git commit -m "Automated changes"
+            git commit -m "chore(charts): regenerate child charts [skip ci]"
             git push
           fi
 
@@ -61,13 +61,78 @@ jobs:
           helm-docs -o README.md
           if [[ `git status --porcelain` ]]; then
             git add -A
-            git commit -m "Generate Helm docs"
+            git commit -m "docs(charts): regenerate helm docs [skip ci]"
             git push
           fi
+
+      - name: Bootstrap gh-pages branch
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          worktree_dir="$(mktemp -d)"
+
+          cleanup() {
+            git worktree remove --force "$worktree_dir" || true
+          }
+
+          trap cleanup EXIT
+
+          git worktree add --detach "$worktree_dir"
+          git -C "$worktree_dir" checkout --orphan gh-pages
+          git -C "$worktree_dir" rm -rf . >/dev/null 2>&1 || true
+          touch "$worktree_dir/.nojekyll"
+          git -C "$worktree_dir" add .nojekyll
+          git -C "$worktree_dir" commit -m "chore(release): bootstrap gh-pages [skip ci]"
+          git -C "$worktree_dir" push origin gh-pages
+
+      - name: Package charts locally
+        run: |
+          set -euo pipefail
+
+          package_dir=".cr-release-packages"
+          staging_dir="$(mktemp -d)"
+
+          cleanup() {
+            rm -rf "$staging_dir"
+          }
+
+          trap cleanup EXIT
+
+          rm -rf "$package_dir"
+          mkdir -p "$package_dir"
+
+          helm package charts/library-chart --destination "$package_dir"
+          library_archive="$(printf '%s\n' "$package_dir"/library-chart-*.tgz)"
+
+          for chart in charts/*; do
+            if [[ ! -f "$chart/Chart.yaml" ]]; then
+              continue
+            fi
+
+            if [[ "$chart" == "charts/library-chart" ]]; then
+              continue
+            fi
+
+            staged_chart="$staging_dir/$(basename "$chart")"
+            cp -a "$chart" "$staged_chart"
+
+            if grep -q 'name: library-chart' "$chart/Chart.yaml"; then
+              mkdir -p "$staged_chart/charts"
+              rm -f "$staged_chart"/charts/library-chart-*.tgz
+              cp "$library_archive" "$staged_chart/charts/"
+            fi
+
+            helm package "$staged_chart" --destination "$package_dir"
+          done
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         with:
           charts_dir: charts
+          pages_branch: gh-pages
+          skip_packaging: true
+          skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
