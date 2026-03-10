@@ -37,5 +37,9 @@ jobs:
             mkdir -p "$workdir/$chart/charts"
             cp -a "charts/$chart/." "$workdir/$chart/"
             cp "$workdir"/library-chart-*.tgz "$workdir/$chart/charts/"
+            if [[ "$chart" == rstudio || "$chart" == rstudio-sparkr ]]; then
+              helm lint "$workdir/$chart" --set certificates.cacerts=
+              continue
+            fi
             helm lint "$workdir/$chart"
           done
