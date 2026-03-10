@@ -167,7 +167,6 @@ message:
   fr: ''
   en: ''
 runtimeClassName: ''
-
 httproute:
   enabled: false
   annotations: []
@@ -176,5 +175,3 @@ httproute:
   path: /
   userPath: /
   parentRefs: []
-    # - name: my-gateway
-    #   namespace: gateway-system
