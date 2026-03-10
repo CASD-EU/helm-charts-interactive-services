@@ -51,6 +51,7 @@ The JupyterLab IDE with Python and a collection of standard data science package
 | hive.secretName | string | `""` |  |
 | httproute.annotations | list | `[]` |  |
 | httproute.enabled | bool | `false` |  |
+| httproute.generate | bool | `false` |  |
 | httproute.hostname | string | `"chart-example.local"` |  |
 | httproute.parentRefs | list | `[]` |  |
 | httproute.path | string | `"/"` |  |
@@ -60,6 +61,7 @@ The JupyterLab IDE with Python and a collection of standard data science package
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.enabled | bool | `false` |  |
+| ingress.generate | bool | `false` |  |
 | ingress.hostname | string | `"chart-example.local"` |  |
 | ingress.ingressClassName | string | `""` |  |
 | ingress.path | string | `"/"` |  |
@@ -108,6 +110,7 @@ The JupyterLab IDE with Python and a collection of standard data science package
 | resources | object | `{}` |  |
 | route.annotations | list | `[]` |  |
 | route.enabled | bool | `false` |  |
+| route.generate | bool | `false` |  |
 | route.hostname | string | `"chart-example.local"` |  |
 | route.tls.termination | string | `"edge"` |  |
 | route.userHostname | string | `"chart-example-user.local"` |  |

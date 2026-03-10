@@ -52,6 +52,7 @@ The Visual Studio Code IDE with PySpark, an interface to use Apache Spark from P
 | hive.secretName | string | `""` |  |
 | httproute.annotations | list | `[]` |  |
 | httproute.enabled | bool | `false` |  |
+| httproute.generate | bool | `false` |  |
 | httproute.hostname | string | `"chart-example.local"` |  |
 | httproute.parentRefs | list | `[]` |  |
 | httproute.path | string | `"/"` |  |
@@ -61,6 +62,7 @@ The Visual Studio Code IDE with PySpark, an interface to use Apache Spark from P
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.enabled | bool | `false` |  |
+| ingress.generate | bool | `false` |  |
 | ingress.hostname | string | `"chart-example.local"` |  |
 | ingress.ingressClassName | string | `""` |  |
 | ingress.path | string | `"/"` |  |
@@ -110,6 +112,7 @@ The Visual Studio Code IDE with PySpark, an interface to use Apache Spark from P
 | resources | object | `{}` |  |
 | route.annotations | list | `[]` |  |
 | route.enabled | bool | `false` |  |
+| route.generate | bool | `false` |  |
 | route.hostname | string | `"chart-example.local"` |  |
 | route.tls.termination | string | `"edge"` |  |
 | route.userHostname | string | `"chart-example-user.local"` |  |
