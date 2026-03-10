@@ -10,5 +10,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v6
+      - uses: azure/setup-helm@v4
+        with:
+          version: v3.8.1
       - uses: pre-commit/action@v3.0.1
+        env:
+          SKIP: helmlint
+      - name: Run helmlint with local library dependency
+        run: |
+          set -euo pipefail
+
+          workdir="$(mktemp -d)"
+
+          cleanup() {
+            rm -rf "$workdir"
+          }
+
+          trap cleanup EXIT
+
+          helm package charts/library-chart --destination "$workdir" >/dev/null
+
+          for chart in jupyter-python jupyter-pyspark vscode-python vscode-pyspark rstudio rstudio-sparkr; do
+            mkdir -p "$workdir/$chart/charts"
+            cp -a "charts/$chart/." "$workdir/$chart/"
+            cp "$workdir"/library-chart-*.tgz "$workdir/$chart/charts/"
+            helm lint "$workdir/$chart"
+          done
