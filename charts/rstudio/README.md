@@ -40,6 +40,13 @@ The RStudio IDE with a collection of standard data science packages.
 | git.secretName | string | `""` |  |
 | git.token | string | `""` |  |
 | global.suspend | bool | `false` |  |
+| httproute.annotations | list | `[]` |  |
+| httproute.enabled | bool | `false` |  |
+| httproute.hostname | string | `"chart-example.local"` |  |
+| httproute.parentRefs | list | `[]` |  |
+| httproute.path | string | `"/"` |  |
+| httproute.userHostname | string | `"chart-example-user.local"` |  |
+| httproute.userPath | string | `"/"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |

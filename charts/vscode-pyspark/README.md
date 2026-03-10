@@ -50,6 +50,13 @@ The Visual Studio Code IDE with PySpark, an interface to use Apache Spark from P
 | git.token | string | `""` |  |
 | global.suspend | bool | `false` |  |
 | hive.secretName | string | `""` |  |
+| httproute.annotations | list | `[]` |  |
+| httproute.enabled | bool | `false` |  |
+| httproute.hostname | string | `"chart-example.local"` |  |
+| httproute.parentRefs | list | `[]` |  |
+| httproute.path | string | `"/"` |  |
+| httproute.userHostname | string | `"chart-example-user.local"` |  |
+| httproute.userPath | string | `"/"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |

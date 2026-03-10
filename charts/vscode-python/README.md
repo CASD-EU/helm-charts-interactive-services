@@ -48,6 +48,13 @@ The Visual Studio Code IDE with Python, Julia, and a collection of standard data
 | git.secretName | string | `""` |  |
 | global.suspend | bool | `false` |  |
 | hive.secretName | string | `""` |  |
+| httproute.annotations | list | `[]` |  |
+| httproute.enabled | bool | `false` |  |
+| httproute.hostname | string | `"chart-example.local"` |  |
+| httproute.parentRefs | list | `[]` |  |
+| httproute.path | string | `"/"` |  |
+| httproute.userHostname | string | `"chart-example-user.local"` |  |
+| httproute.userPath | string | `"/"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
