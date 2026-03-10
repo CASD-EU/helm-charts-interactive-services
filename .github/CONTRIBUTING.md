@@ -52,7 +52,7 @@ Hence, only the above charts should be edited.
 
 Do not edit children charts directly, your modification could be erased in later releases.
 
-You can refer to [a diagram to see the link between the charts](https://github.com/InseeFrLab/helm-charts-interactive-services/blob/main/utils/charts-inheritance.yaml) or [consult the code](https://github.com/InseeFrLab/helm-charts-interactive-services/blob/main/utils/generate-children-charts.py).
+You can refer to [a diagram to see the link between the charts](https://github.com/CASD-EU/helm-charts-interactive-services/blob/main/utils/charts-inheritance.yaml) or [consult the code](https://github.com/CASD-EU/helm-charts-interactive-services/blob/main/utils/generate-children-charts.py).
 
 
 ## 🚀 You're Ready!

@@ -9,13 +9,13 @@ The JupyterLab IDE with Python and the deep-learning framework TensorFlow.
 ## Source Code
 
 * <https://github.com/InseeFrLab/images-datascience>
-* <https://github.com/InseeFrLab/helm-charts-interactive-services>
+* <https://github.com/CASD-EU/helm-charts-interactive-services>
 
 ## Requirements
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 2.0.3 |
+| https://casd-eu.github.io/helm-charts-interactive-services | library-chart | 2.0.3 |
 
 ## Values
 

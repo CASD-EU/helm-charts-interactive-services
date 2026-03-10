@@ -9,10 +9,10 @@ keywords:
 home: https://code.visualstudio.com/
 sources:
 - https://github.com/InseeFrLab/images-datascience
-- https://github.com/InseeFrLab/helm-charts-interactive-services
+- https://github.com/CASD-EU/helm-charts-interactive-services
 type: application
 version: 2.5.2
 dependencies:
 - name: library-chart
   version: 2.0.3
-  repository: https://inseefrlab.github.io/helm-charts-interactive-services
+  repository: https://casd-eu.github.io/helm-charts-interactive-services

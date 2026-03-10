@@ -4,9 +4,9 @@ Helm charts interactive services
 
 This collection of Helm Charts is tailored for datascientists ! It is primarily designed to work with Onyxia but they can also be used as regular helm charts.
 
-``` helm repo add inseefrlab-datascience https://inseefrlab.github.io/helm-charts-interactive-services ```
+``` helm repo add casd-eu-interactive-services https://casd-eu.github.io/helm-charts-interactive-services ```
 
-The repo is also browsable directly https://inseefrlab.github.io/helm-charts-interactive-services/index.yaml
+The repo is also browsable directly https://casd-eu.github.io/helm-charts-interactive-services/index.yaml
 
 Contributions are much welcome! Feel free to open issues or submit pull requests :)
 
@@ -559,4 +559,4 @@ You can use a configuration with a master local for example.
 - [CODE_OF_CONDUCT.md](https://github.com/InseeFrLab/onyxia/blob/main/CODE_OF_CONDUCT.md)
 - [ROADMAP.md](https://github.com/InseeFrLab/onyxia/blob/main/ROADMAP.md)
 - [SECURITY.md](https://github.com/InseeFrLab/onyxia/blob/main/SECURITY.md)
-- [CONTRIBUTING.md](https://github.com/InseeFrLab/helm-charts-interactive-services/blob/main/.github/CONTRIBUTING.md)
+- [CONTRIBUTING.md](https://github.com/CASD-EU/helm-charts-interactive-services/blob/main/.github/CONTRIBUTING.md)
