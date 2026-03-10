@@ -107,6 +107,7 @@ networking:
     ports: []
 ingress:
   enabled: false
+  generate: false
   tls: true
   ingressClassName: ''
   annotations: []
@@ -120,6 +121,7 @@ ingress:
   tlsSecretName: ''
 route:
   enabled: false
+  generate: false
   annotations: []
   hostname: chart-example.local
   userHostname: chart-example-user.local
@@ -170,6 +172,7 @@ message:
 runtimeClassName: ''
 httproute:
   enabled: false
+  generate: false
   annotations: []
   hostname: chart-example.local
   userHostname: chart-example-user.local

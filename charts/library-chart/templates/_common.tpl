@@ -9,10 +9,12 @@
   Return the URL at which the service can be accessed
 */}}
 {{- define "library-chart.service-url" -}}
-{{- if (.Values.ingress).enabled -}}
-{{- printf "%s://%s" (.Values.ingress.tls | ternary "https" "http") .Values.ingress.hostname -}}
+{{- if (.Values.httproute).enabled -}}
+{{- printf "https://%s" (include "library-chart.httproute.hostname" .) -}}
+{{- else if (.Values.ingress).enabled -}}
+{{- printf "%s://%s" (.Values.ingress.tls | ternary "https" "http") (include "library-chart.ingress.hostname" .) -}}
 {{- else if (.Values.route).enabled -}}
-{{- printf "https://%s" .Values.route.hostname -}}
+{{- printf "https://%s" (include "library-chart.route.hostname" .) -}}
 {{- end -}}
 {{- end -}}
 
@@ -21,7 +23,9 @@
 */}}
 {{- define "library-chart.sparkui-url" -}}
   {{- if (.Values.spark).ui -}}
-    {{- if (.Values.ingress).enabled -}}
+    {{- if (.Values.httproute).enabled -}}
+      {{- printf "https://%s" .Values.spark.hostname -}}
+    {{- else if (.Values.ingress).enabled -}}
       {{- printf "%s://%s" (.Values.ingress.tls | ternary "https" "http") .Values.spark.hostname -}}
     {{- else if (.Values.route).enabled -}}
       {{- printf "https://%s" .Values.spark.hostname -}}
@@ -33,7 +37,9 @@
   Return the URL at which the user-defined custom port(s) can be accessed
 */}}
 {{- define "library-chart.user-url" -}}
-  {{- if (.Values.ingress).enabled -}}
+  {{- if (.Values.httproute).enabled -}}
+    {{- printf "https://%s" .Values.httproute.userHostname -}}
+  {{- else if (.Values.ingress).enabled -}}
     {{- printf "%s://%s" (.Values.ingress.tls | ternary "https" "http") .Values.ingress.userHostname -}}
   {{- else if (.Values.route).enabled -}}
     {{- printf "https://%s" .Values.route.userHostname -}}

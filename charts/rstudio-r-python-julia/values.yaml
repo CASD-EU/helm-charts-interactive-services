@@ -90,6 +90,7 @@ networking:
     ports: []
 ingress:
   enabled: false
+  generate: false
   tls: true
   annotations: []
   hostname: chart-example.local
@@ -102,6 +103,7 @@ ingress:
   tlsSecretName: ''
 route:
   enabled: false
+  generate: false
   annotations: []
   hostname: chart-example.local
   userHostname: chart-example-user.local
@@ -110,6 +112,7 @@ route:
   wildcardPolicy: None
 httproute:
   enabled: false
+  generate: false
   annotations: []
   hostname: chart-example.local
   userHostname: chart-example-user.local

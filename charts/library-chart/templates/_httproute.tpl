@@ -7,6 +7,15 @@
 {{- end }}
 {{- end }}
 
+{{/* HTTPRoute hostname */}}
+{{- define "library-chart.httproute.hostname" -}}
+{{- if (.Values.httproute).generate }}
+{{- .Values.httproute.userHostname }}
+{{- else }}
+{{- .Values.httproute.hostname }}
+{{- end }}
+{{- end }}
+
 {{/* Template to generate a standard HTTPRoute */}}
 {{- define "library-chart.httproute" -}}
 {{- if (.Values.httproute).enabled -}}
@@ -27,7 +36,7 @@ spec:
   parentRefs:
     {{- toYaml .Values.httproute.parentRefs | nindent 4 }}
   hostnames:
-    - {{ .Values.httproute.hostname | quote }}
+    - {{ include "library-chart.httproute.hostname" . | quote }}
   rules:
     - matches:
         - path:

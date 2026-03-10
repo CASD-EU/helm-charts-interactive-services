@@ -151,8 +151,8 @@ networking:
   sparkui:
     port: 4040
   # Custom user-specified extra ports exposition.
-  # If ingress or route is enabled, the exposed ports are also made available at the
-  # {ingress,route}.userHostname URL (or variations, in case several ports are provided).
+  # If ingress, route or httproute is enabled, the exposed ports are also made available at the
+  # corresponding userHostname URL (or variations, in case several ports are provided).
   # Note: a non-empty networking.user.ports overrides networking.user.port
   user:
     enabled: false
@@ -161,6 +161,7 @@ networking:
 
 ingress:
   enabled: false
+  generate: false
   tls: true
   ingressClassName: ""
   annotations: []
@@ -179,6 +180,7 @@ ingress:
 
 route:
   enabled: false
+  generate: false
   annotations: []
     # route.openshift.io/termination: "reencrypt"
   hostname: chart-example.local
@@ -270,6 +272,7 @@ runtimeClassName: ""
 
 httproute:
   enabled: false
+  generate: false
   annotations: []
   hostname: chart-example.local
   userHostname: chart-example-user.local

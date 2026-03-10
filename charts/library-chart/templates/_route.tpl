@@ -33,7 +33,7 @@ metadata:
   annotations:
     {{- include "library-chart.route.annotations" . | nindent 4 }}
 spec:
-  host: {{ .Values.route.hostname | quote }}
+  host: {{ include "library-chart.route.hostname" . | quote }}
   path: {{ .Values.route.path | default "/" }}
   to:
     kind: Service

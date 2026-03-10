@@ -57,7 +57,7 @@ spec:
 {{- if .Values.ingress.tls }}
   tls:
     - hosts:
-        - {{ .Values.ingress.hostname | quote }}
+        - {{ include "library-chart.ingress.hostname" . | quote }}
     {{ if and .Values.ingress.useTlsSecret (ne .Values.ingress.tlsSecretName "") }}
       secretName: {{ .Values.ingress.tlsSecretName }}
     {{ else if  or .Values.ingress.useCertManager .Values.ingress.useTlsSecret }}
@@ -65,7 +65,7 @@ spec:
     {{- end }}
 {{- end }}
   rules:
-    - host: {{ .Values.ingress.hostname | quote }}
+    - host: {{ include "library-chart.ingress.hostname" . | quote }}
       http:
         paths:
           - path: {{ .Values.ingress.path | default "/" }}

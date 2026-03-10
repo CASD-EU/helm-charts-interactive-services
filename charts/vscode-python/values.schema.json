@@ -726,14 +726,11 @@
       "title": "Ingress Details",
       "type": "object",
       "form": true,
-      "x-onyxia": {
-        "overwriteSchemaWith": "ide/ingress.json"
-      },
       "properties": {
         "enabled": {
           "description": "Enable Ingress",
           "type": "boolean",
-          "default": true,
+          "default": false,
           "x-onyxia": {
             "hidden": true,
             "overwriteDefaultWith": "k8s.ingress"
@@ -794,9 +791,16 @@
             "hidden": true
           }
         },
-        "tlsSecretName":{
+        "tlsSecretName": {
           "type": "string",
           "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
+        },
+        "generate": {
+          "type": "boolean",
+          "default": false,
           "x-onyxia": {
             "hidden": true
           }
@@ -833,6 +837,13 @@
           "x-onyxia": {
             "hidden": true,
             "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-user.{{k8s.domain}}"
+          }
+        },
+        "generate": {
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
           }
         }
       }
@@ -938,7 +949,7 @@
             "overwriteDefaultWith": "user.lang"
           }
         },
-        "aiAssistant":{
+        "aiAssistant": {
           "title": "AI Assistant",
           "type": "object",
           "description": "Configure Continue, an extension to use custom AI code assistants",
@@ -956,7 +967,7 @@
             },
             "model": {
               "type": "string",
-              "default":"",
+              "default": "",
               "hidden": {
                 "value": false,
                 "path": "enabled",
@@ -978,7 +989,7 @@
                 "overwriteDefaultWith": "user.profile.aiAssistant.provider"
               }
             },
-            "apiBase":{
+            "apiBase": {
               "type": "string",
               "default": "",
               "hidden": {
@@ -990,7 +1001,7 @@
                 "overwriteDefaultWith": "user.profile.aiAssistant.apiBase"
               }
             },
-            "apiKey":{
+            "apiKey": {
               "type": "string",
               "default": "",
               "hidden": {
@@ -1002,7 +1013,7 @@
                 "overwriteDefaultWith": "user.profile.aiAssistant.apiKey"
               }
             },
-            "useLegacyCompletionsEndpoint":{
+            "useLegacyCompletionsEndpoint": {
               "title": "use legacy completions endpoint",
               "type": "boolean",
               "default": true,
@@ -1110,7 +1121,7 @@
       "properties": {
         "fr": {
           "type": "string",
-          "description": "message à ajouter dans les notes",
+          "description": "message \u00e0 ajouter dans les notes",
           "default": ""
         },
         "en": {
@@ -1120,13 +1131,104 @@
         }
       }
     },
-    "runtimeClassName" : {
+    "runtimeClassName": {
       "type": "string",
       "description": "Runtime Class Name",
       "default": "",
       "x-onyxia": {
         "hidden": true,
         "overwriteSchemaWith": "ide/runtimeClassName.json"
+      }
+    },
+    "httproute": {
+      "title": "HTTPRoute Details",
+      "type": "object",
+      "form": true,
+      "properties": {
+        "enabled": {
+          "description": "Enable HTTPRoute",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "generate": {
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
+        },
+        "annotations": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "x-onyxia": {
+            "hidden": true
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-0.{{k8s.domain}}"
+          }
+        },
+        "userHostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-user.{{k8s.domain}}"
+          }
+        },
+        "path": {
+          "type": "string",
+          "default": "/",
+          "x-onyxia": {
+            "hidden": true
+          }
+        },
+        "userPath": {
+          "type": "string",
+          "default": "/",
+          "x-onyxia": {
+            "hidden": true
+          }
+        },
+        "parentRefs": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "namespace": {
+                "type": "string"
+              },
+              "sectionName": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": true
+          },
+          "x-onyxia": {
+            "hidden": true
+          }
+        }
       }
     }
   }

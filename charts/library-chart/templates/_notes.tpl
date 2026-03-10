@@ -33,7 +33,7 @@
 {{- $serviceName := .serviceName | default .context.Chart.Name -}}
 {{- with .context -}}
 {{- if eq .Values.userPreferences.language "fr" -}}
-{{- if or (.Values.ingress).enabled (.Values.route).enabled }}
+{{- if or (.Values.httproute).enabled (.Values.ingress).enabled (.Values.route).enabled }}
 - Vous pouvez vous connecter à {{ $serviceName }} depuis votre navigateur en utilisant [ce lien]({{ include "library-chart.service-url" . }}).
 {{ else }}
 - Votre service {{ $serviceName }} n'est pas directement exposé sur internet.
@@ -46,7 +46,7 @@ puis en vous connectant depuis votre navigateur à l'URL suivante : `http://loca
 {{ end -}}
 - Votre password: {{ .Values.security.password }}
 {{ else -}}
-{{- if or (.Values.ingress).enabled (.Values.route).enabled }}
+{{- if or (.Values.httproute).enabled (.Values.ingress).enabled (.Values.route).enabled }}
 - You can connect to {{ $serviceName }} with your browser using [this link]({{ include "library-chart.service-url" . }}).
 {{ else }}
 - Your service {{ $serviceName }} is not exposed on the internet.
@@ -69,7 +69,7 @@ and then use the following URL with your browser: `http://localhost:<local-port>
 {{- define "library-chart.notes-sparkui" -}}
 {{- if (.Values.spark).ui -}}
 {{- if eq .Values.userPreferences.language "fr" -}}
-{{- if or (.Values.ingress).enabled (.Values.route).enabled -}}
+{{- if or (.Values.httproute).enabled (.Values.ingress).enabled (.Values.route).enabled -}}
 - Lorsque le driver Spark est en cours d'exécution, vous pouvez vous connecter à l'interface Spark depuis votre navigateur en utilisant [ce lien]({{ include "library-chart.sparkui-url" . }}).
 {{ else }}
 - Votre interface Spark n'est pas directement exposée sur internet.
@@ -80,7 +80,7 @@ puis en vous connectant depuis votre navigateur à l'URL suivante : `http://loca
 - Votre nom d'utilisateur : **`{{ .Values.environment.user }}`**
 - Votre mot de passe : **`{{ .Values.security.password }}`**
 {{ else -}}
-{{- if or (.Values.ingress).enabled (.Values.route).enabled -}}
+{{- if or (.Values.httproute).enabled (.Values.ingress).enabled (.Values.route).enabled -}}
 - When the Spark driver is running, you can connect to the Spark UI with your browser using [this link]({{ include "library-chart.sparkui-url" . }}).
 {{ else }}
 - Your Spark interface is not exposed on the internet.
@@ -102,7 +102,7 @@ and then use the following URL with your browser: `http://localhost:<local-port>
 {{- if and
       ((.Values.networking).user).enabled
       (or .Values.networking.user.ports .Values.networking.user.port)
-      (or (.Values.ingress).enabled (.Values.route).enabled)
+      (or (.Values.httproute).enabled (.Values.ingress).enabled (.Values.route).enabled)
 -}}
 {{- $userPorts := .Values.networking.user.ports | default (list .Values.networking.user.port) -}}
 {{- $URL := include "library-chart.user-url" . -}}

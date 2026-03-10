@@ -21,7 +21,7 @@ spec:
 
 {{/* Template to generate a NetworkPolicy for an Ingress */}}
 {{- define "library-chart.networkPolicyIngress" -}}
-{{- if and ((.Values.security).networkPolicy).enabled (.Values.ingress).enabled -}}
+{{- if and ((.Values.security).networkPolicy).enabled (or (.Values.ingress).enabled (.Values.httproute).enabled) -}}
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
